@@ -55,7 +55,8 @@ function buildToDo(todo, index) {
   toDoShell.classList.add("toDoShell");
   let toDoText = document.createElement("span");
   toDoText.innerHTML = todo.description;
-  toDoText.id = index
+  toDoText.id = index;
+  toDoText.addEventListener("click", completeToDo)
   if(todo.complete){
     toDoText.classList.add("completeText");
   }
@@ -91,9 +92,9 @@ function displayToDos() {
   let toDoContainer = document.getElementById("toDoContainer");
   toDoContainer.innerHTML = "";
   let array = buildToDos(toDoItems);
-  for(let item of array){
-    toDoContainer.innerHTML += item;
-  }
+  array.forEach(element => {
+    toDoContainer.appendChild(element);
+  })
 }
 
 // La función 'addToDo' agregará un nuevo ToDo al array 'toDoItems'
@@ -108,10 +109,9 @@ function displayToDos() {
 function addToDo() {
   // Tu código acá:
   let input = document.getElementById("toDoInput");
-  let valor = input.valor;
-  let nuevo = new ToDo(valor);
+  let nuevo = new ToDo(input.value);
   toDoItems.push(nuevo);
-  valor = "";
+  input.value = "";
   displayToDos();
 }
 
@@ -122,7 +122,7 @@ function addToDo() {
 
 // Tu código acá:
 let boton = document.getElementById("addButton");
-boton.addEventListener("click", addToDo());
+boton.addEventListener("click", addToDo);
 
 // La función completeToDo se va a ejecutar cuando queramos completar un todo
 // [NOTA: Algunas cuestiones a tener en cuenta
