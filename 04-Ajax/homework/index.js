@@ -39,7 +39,9 @@ function mostrarAmigos(amigos){
 // -----------------------------------------Obtener Amigo por ID------------------------------------------------
 btnSearch.addEventListener("click", function(){
     spanBorrado.innerText = "";
-    fetch(url + input.value)
+    fetch(url + input.value, {
+        method: "GET"
+    })
         .then(res => res.json())
         .then(amigo => {
             input.value = "";
