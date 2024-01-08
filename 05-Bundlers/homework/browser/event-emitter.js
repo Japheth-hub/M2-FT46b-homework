@@ -1,6 +1,3 @@
-(function () {
-  window.EventEmitter = EventEmitter;
-
   // our EventEmitter constructor function
   function EventEmitter() {
     this.subscribers = {};
@@ -37,4 +34,6 @@
       listener.apply(null, remainingArgs);
     });
   };
-})();
+
+  modules.export = EventEmitter;
+
